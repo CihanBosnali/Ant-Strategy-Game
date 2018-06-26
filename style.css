@@ -1,0 +1,13 @@
+#logo{
+    height: 200px;
+}
+
+body {
+    text-align: center;
+    background-color: RGB(224,0,0);
+}
+
+.conteiner {
+    background-color: white;
+    padding: 5px;
+}
