@@ -3,4 +3,8 @@ class Ant extends Tile {
 		super(x, y);
 		this.hdg = hdg;
 	}
+
+	renderFunc(game) {
+		
+	}
 }
