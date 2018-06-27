@@ -32,6 +32,5 @@ export class Player extends Tile {
 			0, 2 * Math.PI
 		);
 		game.canvas.ctx.fillStyle = this.color;
-		game.canvas.ctx.fill();
 	}
 }

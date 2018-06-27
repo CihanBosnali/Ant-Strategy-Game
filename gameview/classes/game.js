@@ -1,3 +1,12 @@
+function getOffset(el) {
+	el = el.getBoundingClientRect();
+	return {
+		left: el.left + window.scrollX,
+		top: el.top + window.scrollY
+	};
+}
+
+
 import { Ant } from "./ant.js";
 import { Tile } from "./tile.js";
 import { Player } from "./player.js";
@@ -29,6 +38,8 @@ export class Game {
 		this.playerIndicators = new Array(2);
 	}
 
+	//#region gets and sets
+
 	set p1panel(elem) {
 		this.playerIndicators[0] = elem;
 	}
@@ -44,32 +55,29 @@ export class Game {
 	get p2panel() {
 		return this.playerIndicators[1];
 	}
-
-	get canvasId() {
-		return this.canvas.id;
-	}
 	
 	set canvasId(canvasid) {
-		const canv = document.getElementById(canvasid);
-		this.canvas = {
-			dom: canv,
-			ctx: canv.getContext("2d"),
-			id: canv.id,
+		this.canv = document.getElementById(canvasid);
+	}
+
+	get canvas() {
+		return {
+			dom: this.canv,
+			ctx: this.canv.getContext("2d"),
+			id: this.canv.id,
 			shape: {
-				y: canv.style.height,
-				x: canv.style.width
+				y: this.canv.style.height,
+				x: this.canv.style.width
 			},
 			pos: {
-				x: canv.offsetLeft,
-				y: canv.offsetTop
+				x: getOffset(this.canv).left,
+				y: getOffset(this.canv).top
 			}
 		};
 	}
 	
-		get turnPlayer() {
-			
-		}
-	
+	//#endregion
+
 	moveAnt(){	
 		const nextTile = this.tiles[this.ant.pos.y][this.ant.pos.x];
 		
@@ -82,6 +90,7 @@ export class Game {
 		this.ant.move();
 	}
 
+	//#region init methods
 	initTiles() {
 		const game = this;
 		return new Promise(function initTiles(res, rej) {
@@ -114,6 +123,8 @@ export class Game {
 		this.canvas.dom.height = this.shape.h;
 	}
 
+	//#endregion
+
 	render() {
 		this.tiles.forEach(row => {row.forEach(tile => {tile.render(this);});});
 		this.ant.render(this);
@@ -122,41 +133,51 @@ export class Game {
 
 	getTileClicked(ev) {
 		//do some maths to get which tile was clicked;
-		let x = 0;
-		let y = 0;
-		x -= this.canvas.pos.x;
-		y -= this.canvas.pos.y;
-	
-		const row = Math.round(y/this.shape.h - 0.5);
-		const column = Math.round(x/this.shape.w - 0.5);
+		console.log(ev);
+		const canvasX = ev.pageX - this.canvas.pos.x;
+		const canvasY = ev.pageY - this.canvas.pos.y;
 
-		return this.tiles[row][column];
+		const tilesizenocanvas = this.settings.tilesize/2;
+
+		// TODO: ACTUALLY CALCULATE THE SCALE!!!!!!
+
+		const x = Math.floor(canvasX/tilesizenocanvas);
+		const y = Math.floor(canvasY / tilesizenocanvas);
+
+		return {x, y};
 	}
 
 	playTurn() {
 
 		//check if a player won
 			// TODO: some magic!
+			this.moveAnt();
 
 		// show the current turn's player
 		this.playerIndicators[this.turn].classList.add("selected");
 		this.playerIndicators[this.turn+1].classList.remove("selected");
-
+		
 		// do some magic to get player to click the tiles
-
+		
 		// set click listener on canvas to change a tile
-		const clickedTile = this.getTileClicked(ev);
-		if (this.turn == 1) {
-			clickedTile.state = 1;
-		} else if (this.turn == 2) {
-			clickedTile.state = 3;
-		}
+		this.canvas.dom.onclick = ev => {
+			const clickedTileCoords = this.getTileClicked(ev);
+			const clickedTile = this.tiles[clickedTileCoords.y][clickedTileCoords.x];
+			console.log(clickedTile);
+			console.log(clickedTile);
+			if (this.turn === 1) {
+				clickedTile.state = new Tile().STATES["1"];
+				console.log(clickedTile);
+			} else if (this.turn === 2) {
+				clickedTile.state = new Tile().STATES["3"];
+			}
 
-		if (this.turn == 2){
-			this.ant.move();
-			this.turnAnt();
-		}
+			this.render();
 
+			
+		};
+		
 		this.turn = (this.turn+1)%2;
+
 	}
 }

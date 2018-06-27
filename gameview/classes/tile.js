@@ -24,7 +24,23 @@ export class Tile {
 		this.renderFunc(game);
 	}
 
-	renderFunc() {
+	renderFunc(game) {
+		const tilesize = game.settings.tilesize;
+
+		if (this.state === this.STATES["1"]) {
+			game.canvas.ctx.fill = game.players[0].color;
+			game.canvas.ctx.fillRect(
+				tilesize * this.pos.x + 8,
+				tilesize * this.pos.y + 8,
+				tilesize - 16, tilesize - 16);
+		} else if (this.state === this.STATES["3"]) {
+			game.canvas.ctx.fill = game.players[1].color;
+			game.canvas.ctx.fillRect(
+				tilesize * this.pos.x + 8,
+				tilesize * this.pos.y + 8,
+				tilesize - 16, tilesize - 16);
+		}
+
 		return;
 	}
 }

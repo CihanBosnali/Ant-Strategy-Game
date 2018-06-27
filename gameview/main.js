@@ -17,10 +17,14 @@ game.initGame("game");
 game.addPlayer(query.get("p1c"));
 game.addPlayer(query.get("p2c"));
 game.players[0].start = query.get("p1pos") ? JSON.parse(query.get("p1pos")) : {x: 2, y: 2};
-game.players[1].start = query.get("p2pos") ? JSON.parse(query.get("p2pos")) : {x: game.tileShape.w-2, y: 2};
+game.players[1].start = query.get("p2pos") ? JSON.parse(query.get("p2pos")) : {x: game.tileShape.w-3, y: 2};
+
+game.p1panel = document.getElementById("p1panel");
+game.p2panel = document.getElementById("p2panel");
+
 game.initTiles().then(game => {
 	game.render();
 	console.log(game);
-	game.tiles[0][5].render(game);
+	game.playTurn();
 });
 
