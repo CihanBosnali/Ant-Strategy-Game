@@ -47,7 +47,7 @@ canvas {
 }
 
 .playercontainer {
-    border: 10px transparent;
+    border: 10px solid rgba(92, 92, 92, 0.411);
 }
 
 .player1{

@@ -7,8 +7,7 @@ export class Ant extends Tile {
 	}
 
 
-	move(){
-		const way = this.hdg;
+	move(sizex, sizey){
 		switch (this.hdg) {
 			case 0:
 				this.pos.y--;
@@ -23,16 +22,23 @@ export class Ant extends Tile {
 				this.pos.x--;
 				break;
 		}
+		this.pos.x = (sizex + this.pos.x) % sizex;
+		this.pos.y = (sizey + this.pos.y) % sizey;
 	}
 
 	turnRight(){
 		this.hdg += 1;
 		this.hdg = this.hdg%4;
+		console.log(this.hdg);
 	}
 
 	turnLeft(){
 		this.hdg -= 1;
+		console.log(this.hdg);
+		this.hdg = (this.hdg+4);
+		console.log(this.hdg);
 		this.hdg = this.hdg % 4;
+		console.log(this.hdg);
 	}
 
 	renderFunc(game) {

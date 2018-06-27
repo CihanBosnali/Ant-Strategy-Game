@@ -82,12 +82,12 @@ export class Game {
 		const tile = this.tiles[this.ant.pos.y][this.ant.pos.x];
 		
 		if (tile.state === new Tile().STATES["1"]) {
-			this.ant.turnRight();
-		} else if (tile.state === new Tile().STATES["3"]) {
 			this.ant.turnLeft();
+		} else if (tile.state === new Tile().STATES["3"]) {
+			this.ant.turnRight();
 		}
 
-		this.ant.move();
+		this.ant.move(this.tileShape.w, this.tileShape.h);
 	}
 
 	//#region init methods
@@ -150,39 +150,47 @@ export class Game {
 	}
 
 	startTurns() {
-		this.turn_played = 1;
 		this.playerIndicators[this.turn].classList.add("selected");
 		this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
-
+		
 		//check if a player won
-			// TODO: some magic!
-			
-			// show the current turn's player
-			
-			// do some magic to get player to click the tiles
-			
+		// TODO: some magic!
+		
+		// show the current turn's player
+		
+		// do some magic to get player to click the tiles
+		
 		// set click listener on canvas to change a tile
 		this.canvas.dom.onclick = ev => {
-			const clickedTileCoords = this.getTileClicked(ev);
-			const clickedTile = this.tiles[clickedTileCoords.y][clickedTileCoords.x];
-			console.log(clickedTile);
-			if (this.turn === 0) {
-				clickedTile.state = new Tile().STATES["1"];
-				console.log(clickedTile);
-			} else if (this.turn === 1) {
-				clickedTile.state = new Tile().STATES["3"];
-				console.log(clickedTile);
-			}
 			
-			if (this.turn_played === 2) {
-				this.playerIndicators[this.turn].classList.add("selected");
-				this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
-				this.turn = (this.turn+1)%2;
-				this.turn_played = 0;
+			this.moveAnt();
+			while (this.tiles[this.ant.pos.y][this.ant.pos.x].state !== new Tile().STATES["0"]) {
 				this.moveAnt();
 			}
-			this.turn_played += 1;
-			this.render();
+
+			if (Object.is(this.ant.pos, this.players[0].pos)) {
+				this.canvas.dom.removeEventListener("click");
+				//do things
+			} else if (Object.is(this.ant.pos, this.players[0].pos)) {
+				this.canvas.dom.removeEventListener("click");
+				//do things
+			}
+			const clickedTileCoords = this.getTileClicked(ev);
+			const clickedTile = this.tiles[clickedTileCoords.y][clickedTileCoords.x];
+			
+			if (!(Object.is(clickedTileCoords, this.ant.pos))) {
+				if (this.turn === 0) {
+					clickedTile.state = new Tile().STATES["1"];
+					console.log(clickedTile);
+				} else if (this.turn === 1) {
+					clickedTile.state = new Tile().STATES["3"];
+					console.log(clickedTile);
+				}
+				this.render();
+				this.turn = (this.turn + 1) % 2;
+				this.playerIndicators[this.turn].classList.add("selected");
+				this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
+			}
 		};
 	}
 }
