@@ -1,6 +1,6 @@
 import { Tile } from "./tile.js";
 
-class Ant extends Tile {
+export class Ant extends Tile {
 	constructor (x, y, hdg) {
 		super(x, y);
 		this.hdg = hdg;
@@ -49,5 +49,3 @@ class Ant extends Tile {
 		);
 	}
 }
-
-export default Ant;
