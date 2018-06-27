@@ -46,6 +46,16 @@ class Game {
 		};
 	}
 
+	turnAnt(){	
+		const nextTile = this.tiles[this.ant.x][this.ant.y];
+				
+		if (nextTile.state == 1) {
+			ant.turnRight()
+		} else if (nextTile.state == 3) {
+			ant.turnLeft()
+		}
+	}
+
 	initTiles() {
 		const game = this;
 		return new Promise(function initTiles(res, rej) {
