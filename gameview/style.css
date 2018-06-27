@@ -46,10 +46,18 @@ canvas {
     height: 800px;
 }
 
+.playercontainer {
+    border: 10px transparent;
+}
+
 .player1{
     background-color: blue;
 }
 
 .player2{
     background-color: red;
+}
+
+.selected {
+    border: 10px solid lime;
 }
