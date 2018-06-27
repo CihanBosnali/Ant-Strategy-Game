@@ -39,15 +39,7 @@ export class Ant extends Tile {
 
 	renderFunc(game) {
 		const antimage = (new Image()); antimage.src = `assets/ant${this.hdg}.png`;
-		[antimage,
-			game.settings.tilesize * this.pos.x + 2,
-			game.settings.tilesize * this.pos.y + 2,
-			game.settings.tilesize - 2,
-			game.settings.tilesize - 2
-		].forEach(val => {
-			console.log(val);
-		});
-		game.canvas
+		antimage.onload = _ => game.canvas
 		.ctx.drawImage(
 			antimage,
 			game.settings.tilesize*this.pos.x+2,
