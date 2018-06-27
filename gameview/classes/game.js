@@ -97,8 +97,8 @@ export class Game {
 		//do some maths to get which tile was clicked;
 		let x = 0;
 		let y = 0;
-		x -= this.canvas.pos.x
-		y -= this.canvas.pos.y
+		x -= this.canvas.pos.x;
+		y -= this.canvas.pos.y;
 	
 		const row = Math.round(y/this.shape.h - 0.5);
 		const column = Math.round(x/this.shape.w - 0.5);
@@ -110,7 +110,11 @@ export class Game {
 
 		// do some magic to get player to click the tiles and then 
 		const clickedTile = this.getTileClicked(ev);
-
+		if (this.turn == 1) {
+			clickedTile.state = 1;
+		} else if (this.turn == 2) {
+			clickedTile.state = 3;
+		}
 
 		this.turn = (this.turn+1)%2;
 	}
