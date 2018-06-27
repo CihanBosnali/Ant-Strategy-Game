@@ -21,18 +21,14 @@ export class Player extends Tile {
 	}
 
 	renderFunc(game) {
-		const ctx = game.canvas.ctx;
-		const x = game.settings.tilesize*this.pos.x+2;
-		const y = game.settings.tilesize*this.pos.y+2;
-
-		ctx.beginPath();
-		ctx.arc(
+		game.canvas.ctx.beginPath();
+		game.canvas.ctx.arc(
 			game.settings.tilesize * this.pos.x + 2,
 			game.settings.tilesize * this.pos.y + 2,
 			(game.settings.tilesize - 2) / 2,
 			0, 2 * Math.PI
 		);
-		ctx.fillStyle = this.color;
-		ctx.fill();
+		game.canvas.ctx.fillStyle = this.color;
+		game.canvas.ctx.fill();
 	}
 }
