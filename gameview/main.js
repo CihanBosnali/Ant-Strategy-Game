@@ -25,6 +25,6 @@ game.p2panel = document.getElementById("p2panel");
 game.initTiles().then(game => {
 	game.render();
 	console.log(game);
-	game.playTurn();
+	game.startTurns();
 });
 

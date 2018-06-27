@@ -25,12 +25,13 @@ export class Player extends Tile {
 
 	renderFunc(game) {
 		game.canvas.ctx.beginPath();
+		game.canvas.ctx.fillStyle = this.color;
 		game.canvas.ctx.arc(
 			game.settings.tilesize * this.pos.x + (game.settings.tilesize / 2) + 1,
 			game.settings.tilesize * this.pos.y + (game.settings.tilesize / 2) + 1,
 			(game.settings.tilesize - 2) / 2 - 4,
 			0, 2 * Math.PI
 		);
-		game.canvas.ctx.fillStyle = this.color;
+		game.canvas.ctx.fill();
 	}
 }

@@ -9,32 +9,30 @@ export class Ant extends Tile {
 
 	move(){
 		const way = this.hdg;
-		const BoxCoord = [this.pos.x, this.pos.y];
-		const nextBoxCoord = BoxCoord;
-
-		if (way == 0) {
-			nextBoxCoord[1] += 1;
-
-		} else if (way == 1) {
-			nextBoxCoord[0] += 1;
-
-		} else if (way == 2) {
-			nextBoxCoord[1] -= 1;
-
-		} else if (way == 3) {
-			nextBoxCoord[0] -= 1;
+		switch (this.hdg) {
+			case 0:
+				this.pos.y--;
+				break;
+			case 1:
+				this.pos.x++;
+				break;
+			case 2:
+				this.pos.y++;
+				break;
+			case 3:
+				this.pos.x--;
+				break;
 		}
-
-		this.pos.x = nextBoxCoord[0];
-		this.pos.y = nextBoxCoord[1];
 	}
 
 	turnRight(){
 		this.hdg += 1;
+		this.hdg = this.hdg%4;
 	}
 
 	turnLeft(){
 		this.hdg -= 1;
+		this.hdg = this.hdg % 4;
 	}
 
 	renderFunc(game) {

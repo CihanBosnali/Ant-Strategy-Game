@@ -126,9 +126,11 @@ export class Game {
 	//#endregion
 
 	render() {
+		this.canvas.ctx.fillStyle = "#10FF10";
+		this.canvas.ctx.fillRect(0, 0, this.canvas.shape.x, this.canvas.shape.y);
 		this.tiles.forEach(row => {row.forEach(tile => {tile.render(this);});});
-		this.ant.render(this);
 		this.players.forEach(player => player.render(this));
+		this.ant.render(this);
 	}
 
 	getTileClicked(ev) {
@@ -147,37 +149,40 @@ export class Game {
 		return {x, y};
 	}
 
-	playTurn() {
+	startTurns() {
+		this.turn_played = 0;
+		this.playerIndicators[this.turn].classList.add("selected");
+		this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
 
 		//check if a player won
 			// TODO: some magic!
-			this.moveAnt();
-
-		// show the current turn's player
-		this.playerIndicators[this.turn].classList.add("selected");
-		this.playerIndicators[this.turn+1].classList.remove("selected");
-		
-		// do some magic to get player to click the tiles
-		
+			
+			// show the current turn's player
+			
+			// do some magic to get player to click the tiles
+			
 		// set click listener on canvas to change a tile
 		this.canvas.dom.onclick = ev => {
 			const clickedTileCoords = this.getTileClicked(ev);
 			const clickedTile = this.tiles[clickedTileCoords.y][clickedTileCoords.x];
 			console.log(clickedTile);
-			console.log(clickedTile);
-			if (this.turn === 1) {
+			if (this.turn === 0) {
 				clickedTile.state = new Tile().STATES["1"];
 				console.log(clickedTile);
-			} else if (this.turn === 2) {
+			} else if (this.turn === 1) {
 				clickedTile.state = new Tile().STATES["3"];
+				console.log(clickedTile);
 			}
-
-			this.render();
-
 			
+			if (this.turn_played === 2) {
+				this.playerIndicators[this.turn].classList.add("selected");
+				this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
+				this.turn = (this.turn+1)%2;
+				this.turn_played = 0;
+				this.moveAnt();
+			}
+			this.turn_played += 1;
+			this.render();
 		};
-		
-		this.turn = (this.turn+1)%2;
-
 	}
 }
