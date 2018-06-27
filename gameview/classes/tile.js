@@ -26,3 +26,5 @@ Tile.prototype.STATES = {
 	2: "?",
 	3: "p2"
 };
+
+export default Tile;
