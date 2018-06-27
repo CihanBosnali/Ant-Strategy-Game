@@ -116,6 +116,11 @@ export class Game {
 			clickedTile.state = 3;
 		}
 
+		if (this.turn == 2){
+			this.ant.move();
+			this.turnAnt();
+		}
+
 		this.turn = (this.turn+1)%2;
 	}
 }
