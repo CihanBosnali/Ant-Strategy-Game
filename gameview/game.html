@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Game Starts...</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <div class="header">
-        <div class="menu">
-            <ul>
-                <li><div class="logo"><a href="../index.html"><img src="assets/ant.png"></a></div></li>
-                <li><h3><a href="">Rules</a></h3></li>
-                <li><h3><a href="./game.html">Restart</a></h3></li>
-                <li><h3><a href="">Finish Game</a></h3></li>
-            </ul>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Ant Game
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+        <script src="main.js"></script>
+    </head>
+    <body style="margin: 0;">
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><div class="logo"><a href="../index.html"><img src="assets/ant.png"></a></div></li>
+                    <li>
+                        <h3>
+                            <a href="">
+                                Rules
+                            </a>
+                        </h3>
+                    </li>
+                    <li>
+                        <h3>
+                            <a href="./game.html">
+                                Restart
+                            </a>
+                        </h3>
+                    </li>
+                    <li>
+                        <h3>
+                            <a href="">
+                                Finish Game
+                            </a>
+                        </h3>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+        <div class="game-conteiner">
+            <table>
+                <tr>
+                    <td>
+                        <div class="player1">
+                            <div class="logo-player-1">
+                                <h2>PLAYER 1</h2>
+                                <h4>WAY: LEFT</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <canvas class="game">
+                        </canvas>
+                    </td>
+                    <td>
+                        <div class="player2">
+                            <div class="logo-player-2">
+                                <h2>PLAYER 2</h2>
+                                <h4>WAY: RIGHT</h4>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
             
         </div>
-    </div>
-    <canvas id="game"></canvas>
-</body>
+    </body>
 </html>
