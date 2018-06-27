@@ -12,14 +12,15 @@ buttons.finish = document.getElementById("btn_end");
 buttons.restart.attributes.href += `?${query}`;
 
 
-const game = new Game(query.get("size") || 600, query.get("tileW") || 60);
+const game = new Game(query.get("size") || 20*60, query.get("tileW") || 60);
 game.initGame("game");
 game.addPlayer(query.get("p1c"));
 game.addPlayer(query.get("p2c"));
 game.players[0].start = query.get("p1pos") ? JSON.parse(query.get("p1pos")) : {x: 2, y: 2};
-game.players[1].start = query.get("p2pos") ? JSON.parse(query.get("p2pos")) : {x: 7, y: 2};
+game.players[1].start = query.get("p2pos") ? JSON.parse(query.get("p2pos")) : {x: game.tileShape.w-2, y: 2};
 game.initTiles().then(game => {
 	game.render();
 	console.log(game);
 	game.tiles[0][5].render(game);
 });
+

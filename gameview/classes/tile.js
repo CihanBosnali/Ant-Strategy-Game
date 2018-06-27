@@ -1,6 +1,6 @@
 export class Tile {
 	constructor(gridX, gridY) {
-		this.pos = {x: gridX, y: gridY, 0: gridX, 1: gridY};
+		this.pos = {x: gridX, y: gridY};
 		this.STATES = {
 			0: "blank",
 			1: "p1",

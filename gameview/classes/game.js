@@ -25,12 +25,30 @@ export class Game {
 		}
 
 		this.turn = 0;
+
+		this.playerIndicators = new Array(2);
+	}
+
+	set p1panel(elem) {
+		this.playerIndicators[0] = elem;
+	}
+
+	get p1panel() {
+		return this.playerIndicators[0];
+	}
+	
+	set p2panel(elem) {
+		this.playerIndicators[1] = elem;
+	}
+	
+	get p2panel() {
+		return this.playerIndicators[1];
 	}
 
 	get canvasId() {
 		return this.canvas.id;
 	}
-
+	
 	set canvasId(canvasid) {
 		const canv = document.getElementById(canvasid);
 		this.canvas = {
@@ -47,15 +65,21 @@ export class Game {
 			}
 		};
 	}
-
-	turnAnt(){	
-		const nextTile = this.tiles[this.ant.y][this.ant.x];
-				
+	
+		get turnPlayer() {
+			
+		}
+	
+	moveAnt(){	
+		const nextTile = this.tiles[this.ant.pos.y][this.ant.pos.x];
+		
 		if (nextTile.state == 1) {
 			this.ant.turnRight();
 		} else if (nextTile.state == 3) {
 			this.ant.turnLeft();
 		}
+
+		this.ant.move();
 	}
 
 	initTiles() {
@@ -86,8 +110,8 @@ export class Game {
 	initGame(canvasid) {
 		this.canvasId = canvasid;
 		this.ant = new Ant((this.tileShape.w / 2), (this.tileShape.h/2), 0);
-		this.canvas.dom.style.width = this.shape.w;
-		this.canvas.dom.style.height = this.shape.h;
+		this.canvas.dom.width = this.shape.w;
+		this.canvas.dom.height = this.shape.h;
 	}
 
 	render() {
@@ -111,7 +135,16 @@ export class Game {
 
 	playTurn() {
 
-		// do some magic to get player to click the tiles and then 
+		//check if a player won
+			// TODO: some magic!
+
+		// show the current turn's player
+		this.playerIndicators[this.turn].classList.add("selected");
+		this.playerIndicators[this.turn+1].classList.remove("selected");
+
+		// do some magic to get player to click the tiles
+
+		// set click listener on canvas to change a tile
 		const clickedTile = this.getTileClicked(ev);
 		if (this.turn == 1) {
 			clickedTile.state = 1;

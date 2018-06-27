@@ -9,7 +9,7 @@ export class Ant extends Tile {
 
 	move(){
 		const way = this.hdg;
-		const BoxCoord = [this.x, this.y];
+		const BoxCoord = [this.pos.x, this.pos.y];
 		const nextBoxCoord = BoxCoord;
 
 		if (way == 0) {
@@ -25,8 +25,8 @@ export class Ant extends Tile {
 			nextBoxCoord[0] -= 1;
 		}
 
-		this.x = nextBoxCoord[0];
-		this.y = nextBoxCoord[1];
+		this.pos.x = nextBoxCoord[0];
+		this.pos.y = nextBoxCoord[1];
 	}
 
 	turnRight(){

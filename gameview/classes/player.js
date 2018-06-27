@@ -18,8 +18,6 @@ export class Player extends Tile {
 
 	set start(pos) {
 		this.pos = {
-			0: pos.x,
-			1: pos.y,
 			x: pos.x,
 			y: pos.y
 		};
