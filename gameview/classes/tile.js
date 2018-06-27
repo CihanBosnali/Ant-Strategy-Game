@@ -12,7 +12,7 @@ export class Tile {
 
 	render(game) {
 
-		const tilesize = game.options.tileSize;
+		const tilesize = game.settings.tileSize;
 
 		game.canvas.ctx.style("#FFFFFF");
 		game.canvas.ctx.rect(
