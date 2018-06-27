@@ -10,7 +10,7 @@ class Ant extends Tile {
 	move(){
 		const way = this.hdg;
 		const BoxCoord = [this.x, this.y];
-		var nextBoxCoord = BoxCoord;
+		const nextBoxCoord = BoxCoord;
 
 		if (way == 0) {
 			nextBoxCoord[1] += 1;
