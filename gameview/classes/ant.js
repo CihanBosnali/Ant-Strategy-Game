@@ -7,7 +7,15 @@ class Ant extends Tile {
 	}
 
 	renderFunc(game) {
-
+		const antimage = (new Image()).baseURI = "assets/ant.png";
+		game.canvas
+		.ctx.drawImage(
+			antimage,
+			game.settings.tilesize*this.pos.x+2,
+			game.settings.tilesize*this.pos.y+2,
+			game.settings.tilesize - 2,
+			game.settings.tilesize - 2
+		);
 	}
 }
 
