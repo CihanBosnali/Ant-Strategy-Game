@@ -13,9 +13,6 @@ class Ant extends Tile {
 		const BoxCoord = [this.x, this.y];
 		var nextBoxCoord = BoxCoord;
 
-		// It is a Tile object but JS don't rocognize it...
-		var nextTile;
-
 		if (way == 0) {
 			nextBoxCoord[1] += 1;
 
@@ -29,16 +26,16 @@ class Ant extends Tile {
 			nextBoxCoord[0] -= 1;
 		}
 
-		nextTile = Game.tiles[( nextBoxCoord[1] - 1 * Game.tileShape.w) + nextBoxCoord[0]];
-		
 		this.x = nextBoxCoord[0];
 		this.y = nextBoxCoord[1];
-		
-		if nextTile.state == 1{
-			this.hdg += 1;
-		} else if nextTile.state == 3 {
-			this.hdg -= 1;
-		}
+	}
+
+	turnRight(){
+		this.hdg += 1
+	}
+
+	turnLeft(){
+		this.hdg -= 1
 	}
 
 	renderFunc(game) {
