@@ -1,4 +1,4 @@
-class Tile {
+export class Tile {
 	constructor(gridX, gridY) {
 		this.pos = {x: gridX, y: gridY, 0: gridX, 1: gridY};
 		this.state = this.prototype.STATES[0];
@@ -26,5 +26,3 @@ Tile.prototype.STATES = {
 	2: "?",
 	3: "p2"
 };
-
-export default Tile;
