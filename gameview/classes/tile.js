@@ -1,7 +1,13 @@
 export class Tile {
 	constructor(gridX, gridY) {
 		this.pos = {x: gridX, y: gridY, 0: gridX, 1: gridY};
-		this.state = this.prototype.STATES[0];
+		this.STATES = {
+			0: "blank",
+			1: "p1",
+			2: "?",
+			3: "p2"
+		};
+		this.state = this.STATES[0];
 	}
 
 	render(game) {
@@ -22,10 +28,3 @@ export class Tile {
 		return;
 	}
 }
-
-Tile.prototype.STATES = {
-	0: "blank",
-	1: "p1",
-	2: "?",
-	3: "p2"
-};
