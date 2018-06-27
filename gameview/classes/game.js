@@ -23,6 +23,8 @@ export class Game {
 		for (let i = 0; i < size/tilesize; i++) {
 			this.tiles.push(new Array(size/tilesize));
 		}
+
+		this.turn = 0;
 	}
 
 	get canvasId() {
@@ -89,5 +91,25 @@ export class Game {
 		this.tiles.forEach(row => {row.forEach(tile => {tile.render(this);});});
 		this.ant.render();
 		this.players.forEach(player => player.render());
+	}
+
+	getTileClicked(ev) {
+		
+		//do some maths to get which tile was clicked;
+		const x = 0;
+		const y = 0;
+
+		if(/*magic stuff*/ true) {
+			return this.tiles[y][x];
+		}
+
+		return null;
+	}
+
+	playTurn() {
+
+		// do some magic to get player to click the tiles and then 
+
+		this.turn = (this.turn+1)%2;
 	}
 }
