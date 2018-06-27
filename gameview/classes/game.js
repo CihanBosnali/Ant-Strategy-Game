@@ -2,7 +2,7 @@ import { Ant } from "./ant.js";
 import { Tile } from "./tile.js";
 import { Player } from "./player.js";
 
-class Game {
+export class Game {
 	constructor(size, tilesize) {
 
 		if (size%tilesize) {throw new TypeError("Size should be divisible by tilesize!");}
@@ -91,5 +91,3 @@ class Game {
 		this.players.forEach(player => player.render());
 	}
 }
-
-export default Game;
