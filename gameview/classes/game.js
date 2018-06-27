@@ -70,12 +70,12 @@ export class Game {
 		});
 	}
 
-	addPlayer(ind, color, name) {
-		if(this.players && this.players.length) {
-			this.players[1] = new Player();
+	addPlayer(color) {
+		if(this.players && this.players.length === 1) {
+			this.players[1] = new Player(color, 1);
 		} else if(!this.players) {
 			this.players = [
-				new Player()
+				new Player(color, 0)
 			];
 		} else {
 			throw Error("there are already 2 players");
@@ -84,7 +84,7 @@ export class Game {
 
 	initGame(canvasid) {
 		this.canvasId = canvasid;
-		this.ant = new Ant((this.tileShape.w / 2), (this.tileShape.h/2), Ant.prototype.STATES["0"]);
+		this.ant = new Ant((this.tileShape.w / 2), (this.tileShape.h/2), 0);
 	}
 
 	render() {
