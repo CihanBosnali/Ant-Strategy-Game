@@ -7,7 +7,7 @@ export class Player extends Tile {
 		this.color = clr || (function (id) {
 			if (id === 0) {
 				return "#FF0000";
-			} else return "#0000FF";
+			} else { return "#0000FF";}
 		})(id);
 		this.state = this.STATES["2"];
 	}
