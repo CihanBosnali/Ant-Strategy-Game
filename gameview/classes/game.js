@@ -50,9 +50,9 @@ class Game {
 		const nextTile = this.tiles[this.ant.x][this.ant.y];
 				
 		if (nextTile.state == 1) {
-			ant.turnRight()
+			this.ant.turnRight();
 		} else if (nextTile.state == 3) {
-			ant.turnLeft()
+			this.ant.turnLeft();
 		}
 	}
 

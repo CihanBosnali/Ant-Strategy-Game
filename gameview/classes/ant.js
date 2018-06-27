@@ -1,5 +1,4 @@
 import { Tile } from "./tile.js";
-import { Game } from "./game.js";
 
 class Ant extends Tile {
 	constructor (x, y, hdg) {
@@ -31,11 +30,11 @@ class Ant extends Tile {
 	}
 
 	turnRight(){
-		this.hdg += 1
+		this.hdg += 1;
 	}
 
 	turnLeft(){
-		this.hdg -= 1
+		this.hdg -= 1;
 	}
 
 	renderFunc(game) {
