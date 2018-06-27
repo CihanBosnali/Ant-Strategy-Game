@@ -79,11 +79,11 @@ export class Game {
 	//#endregion
 
 	moveAnt(){	
-		const nextTile = this.tiles[this.ant.pos.y][this.ant.pos.x];
+		const tile = this.tiles[this.ant.pos.y][this.ant.pos.x];
 		
-		if (nextTile.state == 1) {
+		if (tile.state === new Tile().STATES["1"]) {
 			this.ant.turnRight();
-		} else if (nextTile.state == 3) {
+		} else if (tile.state === new Tile().STATES["3"]) {
 			this.ant.turnLeft();
 		}
 
@@ -127,7 +127,7 @@ export class Game {
 
 	render() {
 		this.canvas.ctx.fillStyle = "#10FF10";
-		this.canvas.ctx.fillRect(0, 0, this.canvas.shape.x, this.canvas.shape.y);
+		this.canvas.ctx.fillRect(0, 0, 1200, 1200);
 		this.tiles.forEach(row => {row.forEach(tile => {tile.render(this);});});
 		this.players.forEach(player => player.render(this));
 		this.ant.render(this);
@@ -150,7 +150,7 @@ export class Game {
 	}
 
 	startTurns() {
-		this.turn_played = 0;
+		this.turn_played = 1;
 		this.playerIndicators[this.turn].classList.add("selected");
 		this.playerIndicators[(this.turn + 1)%2].classList.remove("selected");
 
