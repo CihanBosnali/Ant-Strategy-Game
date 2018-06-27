@@ -12,13 +12,13 @@ export class Tile {
 
 	render(game) {
 
-		const tilesize = game.options.tileSize;
+		const tilesize = game.settings.tilesize;
 
-		game.canvas.ctx.style("#FFFFFF");
+		game.canvas.ctx.style = "#000000";
 		game.canvas.ctx.rect(
 			tilesize * this.pos.x + 1,
-			tilesize * this.pos.x + 1,
-			tilesize, tilesize);
+			tilesize * this.pos.y + 1,
+			tilesize - 1, tilesize - 1);
 		game.canvas.ctx.stroke();
 
 		this.renderFunc(game);

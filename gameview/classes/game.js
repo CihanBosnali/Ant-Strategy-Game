@@ -86,12 +86,14 @@ export class Game {
 	initGame(canvasid) {
 		this.canvasId = canvasid;
 		this.ant = new Ant((this.tileShape.w / 2), (this.tileShape.h/2), 0);
+		this.canvas.dom.style.width = this.shape.w;
+		this.canvas.dom.style.height = this.shape.h;
 	}
 
 	render() {
 		this.tiles.forEach(row => {row.forEach(tile => {tile.render(this);});});
-		this.ant.render();
-		this.players.forEach(player => player.render());
+		this.ant.render(this);
+		this.players.forEach(player => player.render(this));
 	}
 
 	getTileClicked(ev) {
