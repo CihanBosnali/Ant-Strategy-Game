@@ -49,7 +49,7 @@ export class Game {
 	}
 
 	turnAnt(){	
-		const nextTile = this.tiles[this.ant.x][this.ant.y];
+		const nextTile = this.tiles[this.ant.y][this.ant.x];
 				
 		if (nextTile.state == 1) {
 			this.ant.turnRight();
@@ -94,16 +94,15 @@ export class Game {
 	}
 
 	getTileClicked(ev) {
-		
 		//do some maths to get which tile was clicked;
 		const x = 0;
 		const y = 0;
 
-		if(/*magic stuff*/ true) {
-			return this.tiles[y][x];
-		}
+		const row = int(y/this.shape.h - 0.5);
+		const column = int(x/this.shape.w - 0.5);
 
-		return null;
+		return this.tiles[row][column];
+
 	}
 
 	playTurn() {
