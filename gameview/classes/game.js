@@ -35,7 +35,7 @@ export class Game {
 		const canv = document.getElementById(canvasid);
 		this.canvas = {
 			dom: canv,
-			ctx: canv.msGetInputContext("2d"),
+			ctx: canv.getContext("2d"),
 			id: canv.id,
 			shape: {
 				y: canv.style.height,
@@ -67,6 +67,7 @@ export class Game {
 					tilerow[j] = new Tile(j, i);
 				}
 			}
+			res(game);
 		});
 	}
 
