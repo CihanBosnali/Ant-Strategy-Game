@@ -2,7 +2,7 @@ import { Ant } from "./ant.js";
 import { Tile } from "./tile.js";
 import { Player } from "./player.js";
 
-class Game {
+export class Game {
 	constructor(size, tilesize) {
 
 		if (size%tilesize) {throw new TypeError("Size should be divisible by tilesize!");}
@@ -50,9 +50,9 @@ class Game {
 		const nextTile = this.tiles[this.ant.x][this.ant.y];
 				
 		if (nextTile.state == 1) {
-			ant.turnRight()
+			this.ant.turnRight();
 		} else if (nextTile.state == 3) {
-			ant.turnLeft()
+			this.ant.turnLeft();
 		}
 	}
 
@@ -91,5 +91,3 @@ class Game {
 		this.players.forEach(player => player.render());
 	}
 }
-
-export default Game;
