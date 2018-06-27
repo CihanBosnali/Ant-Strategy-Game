@@ -9,8 +9,11 @@ export class Tile {
 		const tilesize = game.options.tileSize;
 
 		game.canvas.ctx.style("#FFFFFF");
-		game.canvas.ctx.fillRect(tilesize * this.pos.x + 1, tilesize * this.pos.x + 1, tilesize, tilesize);
-
+		game.canvas.ctx.rect(
+			tilesize * this.pos.x + 1,
+			tilesize * this.pos.x + 1,
+			tilesize, tilesize);
+		game.canvas.ctx.stroke();
 
 		this.renderFunc(game);
 	}
