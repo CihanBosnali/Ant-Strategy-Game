@@ -1,3 +1,5 @@
+https://cihanbosnali.github.io/Ant-Strategy-Game/gameview/game.html
+
 # Ant-Strategy-Game
 Ant Game is a great 2-player strategy game to play. Enjoy it!
 
